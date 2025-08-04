@@ -1,33 +1,35 @@
-
-import pandas as pd
 import dash
-from dash import dcc, html
-import plotly.express as px
+from dash import html, dcc
+import dash_bootstrap_components as dbc
+import os
 
-# Cargar datos RFM segmentados
-rfm = pd.read_csv('rfm_clustered_customers.csv')
-
-app = dash.Dash(__name__)
-app.title = "Iberikus RFM Dashboard"
-
-fig_rfm_scatter = px.scatter_3d(
-    rfm, x='Recency', y='Frequency', z='Monetary',
-    color='Cluster', title="Segmentos de Clientes (RFM en 3D)",
-    color_discrete_sequence=px.colors.qualitative.Set2
+# Initialize the Dash app with Bootstrap theme and page support
+app = dash.Dash(
+    __name__,
+    use_pages=True,
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    suppress_callback_exceptions=True
 )
 
-fig_cluster_dist = px.histogram(
-    rfm, x='Cluster', color='Cluster', title='Distribución de Clientes por Cluster',
-    color_discrete_sequence=px.colors.qualitative.Set2
-)
+server = app.server  # Required for deployment
 
-app.layout = html.Div([
-    html.H1("Iberikus · RFM Customer Segmentation Dashboard", style={'textAlign': 'center'}),
-    html.Div([
-        html.Div([dcc.Graph(figure=fig_rfm_scatter)], className="six columns"),
-        html.Div([dcc.Graph(figure=fig_cluster_dist)], className="six columns"),
-    ], className="row"),
-])
+# Main layout
+app.layout = dbc.Container([
+    dbc.NavbarSimple(
+        brand="Iberikus Analytics Dashboard",
+        brand_href="/",
+        color="dark",
+        dark=True,
+        children=[
+            dbc.NavItem(dbc.NavLink("Home", href="/")),
+            dbc.NavItem(dbc.NavLink("RFM Dashboard", href="/rfm-dashboard")),
+        ]
+    ),
+    html.Br(),
+    dash.page_container  # This renders the content of each page
+], fluid=True)
 
-if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=8080)
+print(dash.page_registry)
+
+if __name__ == '__main__':
+    app.run(debug=True)
