@@ -31,5 +31,9 @@ app.layout = dbc.Container([
 
 print(dash.page_registry)
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 8050))  # Render te asigna un puerto
+    app.run(host='0.0.0.0', port=port, debug=True)
+
