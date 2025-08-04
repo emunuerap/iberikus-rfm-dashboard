@@ -1,56 +1,79 @@
+
 # Iberikus RFM Dashboard
 
-Este proyecto simula el trabajo de un **Data Scientist profesional contratado por Iberikus** para realizar un análisis RFM (Recencia, Frecuencia, Valor Monetario) y ayudar a tomar **decisiones estratégicas de negocio** basadas en datos.
+This project simulates the work of a professional **Data Scientist hired by Iberikus**, a gourmet food distributor, to analyze customer behavior through **RFM segmentation** (Recency, Frequency, Monetary Value). The goal is to provide **actionable business insights** that help drive strategic decisions.
 
----
+## 🚀 Features
 
-## 🎯 Objetivo
+- 📊 **Interactive RFM Dashboard**: Analyze customer segments in real-time
+- 📈 **Dynamic KPIs**: Instantly update based on filters (cluster, frequency range)
+- 🗂️ **Filtered Data Table**: View and explore segmented customers
+- 🌐 **Multi-page layout**: Built using Dash Pages for clean navigation
+- 🎨 **Modern UI**: Styled with Dash Bootstrap Components
 
-Segmentar la base de clientes de Iberikus según sus hábitos de compra y generar un dashboard interactivo para interpretar visualmente los distintos perfiles de clientes.
-
----
-
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
-iberikus_rfm_data_product/
+iberikus-rfm-dashboard/
 │
-├── data/              # Dataset RFM segmentado (rfm_clustered_customers.csv)
-├── notebooks/         # Notebooks exploratorios (opcional)
-├── dashboard/         # Script de Dash: iberikus_rfm_dashboard.py
-├── docs/              # README y futuras documentaciones estratégicas
-└── outputs/           # Visualizaciones, exportaciones o reportes
+├── app.py                     # Main Dash app entrypoint
+├── requirements.txt           # Python dependencies
+├── render.yaml                # Render.com deployment config
+├── rfm_clustered_customers.csv # Input dataset (RFM + cluster)
+│
+├── pages/
+│   ├── home.py                # Homepage with KPIs and insights
+│   └── rfm_dashboard.py       # Main interactive dashboard
+│
+└── assets/
+    └── iberikus_logo.png      # Logo used in UI
 ```
 
----
+## ⚙️ Getting Started Locally
 
-## 📊 Segmentos Identificados
+### 1. Clone the repository
 
-Los clientes han sido agrupados usando **KMeans** en 4 segmentos, visualizados en el dashboard mediante gráficos interactivos que permiten analizar:
-
-- Recency
-- Frequency
-- Monetary
-- Distribución por segmento
-
----
-
-## 🚀 Ejecutar el Dashboard
-
-1. Instala dependencias:
 ```bash
-pip install dash dash-bootstrap-components plotly pandas
+git clone https://github.com/yourusername/iberikus-rfm-dashboard.git
+cd iberikus-rfm-dashboard
 ```
 
-2. Ejecuta desde `dashboard/`:
+### 2. Create a virtual environment (recommended)
+
 ```bash
-python iberikus_rfm_dashboard.py
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Abre en tu navegador: [http://127.0.0.1:8050](http://127.0.0.1:8050)
+### 3. Install dependencies
 
----
+```bash
+pip install -r requirements.txt
+```
 
-## ✨ Autor
-Este proyecto fue desarrollado como un ejemplo profesional de análisis RFM estratégico, visual y accionable para una empresa de retail gastronómico.
+### 4. Run the app
 
+```bash
+python app.py
+```
+
+Then open your browser at [http://localhost:8050](http://localhost:8050)
+
+## 🌍 Live Demo
+
+If you deployed this on [Render.com](https://render.com/) or another platform, you can add the link here:
+
+👉 [Live App](https://your-app.render.com)
+
+## 🧠 Author
+
+**Eduardo Porlan** – [LinkedIn](https://www.linkedin.com/in/eduardoporlan) · [Portfolio](https://www.eporlan.com)
+
+## 🧪 Technologies Used
+
+- Python
+- Dash (Plotly)
+- Pandas
+- Dash Bootstrap Components
+- Plotly Express
+- Render (for deployment)
