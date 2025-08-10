@@ -8,8 +8,7 @@ import plotly.express as px
 dash.register_page(__name__, path="/rfm", name="RFM Dashboard")
 
 # Load the dataset (update path as needed)
-rfm = pd.read_csv("data/rfm_clustered_customers.csv")
-
+rfm = pd.read_csv("data/rfm_clustered_customers_enhanced.csv")
 # Branding colors
 PRIMARY = "#8E2DE2"  # Purple
 SECONDARY = "#4A00E0"  # Indigo
@@ -136,7 +135,7 @@ def update_dashboard(cluster, freq_range):
         color="Cluster",
         title="Recency vs Monetary Value",
         color_discrete_sequence=px.colors.qualitative.Set2,
-        hover_data=["customer_id", "Frequency"]
+        hover_data=["CustomerID", "Frequency"]
     )
     fig_scatter.update_layout(margin=dict(t=40, b=0, l=0, r=0))
 

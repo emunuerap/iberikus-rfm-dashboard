@@ -5,12 +5,11 @@ import pandas as pd
 import os
 
 # Load RFM data
-rfm = pd.read_csv("data/rfm_clustered_customers.csv")
-
+rfm = pd.read_csv("data/rfm_clustered_customers_enhanced.csv")
 # Calculate KPIs dynamically
 TOTAL_CUSTOMERS = f"{rfm.shape[0]:,}"
 AVG_MONETARY = f"€{rfm['Monetary'].mean():,.2f}"
-TOP_CLUSTER = f"Cluster {rfm['Cluster'].value_counts().idxmax()}"
+TOP_CLUSTER= str(rfm.groupby('Cluster')['Monetary'].sum().idxmax())
 
 # Color palette
 PRIMARY_COLOR = "#3D5A40"
